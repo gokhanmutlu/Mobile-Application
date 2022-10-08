@@ -1,6 +1,7 @@
 package com.example.mytagram;
 
 import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         PostAdapter postAdapter = new PostAdapter(this, posts);
         listView.setAdapter(postAdapter);
 
-        final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult()
-                {
+        final ActivityResultLauncher<Intent> launcher =registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
                     @Override
-                    public void onActivityResult(ActivityResult result){
-                        if (result.getResultCode()==Activity.RESULT_OK){
+                    public void onActivityResult(ActivityResult result) {
+
+                        if (result.getResultCode()== Activity.RESULT_OK) {
                             Intent data = result.getData();
                             Post post = new Post();
                             post.setMessage(data.getCharSequenceExtra("msg").toString());
@@ -44,13 +46,21 @@ public class MainActivity extends AppCompatActivity {
                             ((PostAdapter) listView.getAdapter()).notifyDataSetChanged();
                         }
                     }
-                });
-        Button btnPost = findViewById(R.id.btnOk);
-        btnPost.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
+                }
+        );
+
+        Button btnPost = findViewById(R.id.buttonPost);
+        btnPost = (Button) findViewById(R.id.buttonPost);
+        btnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, PostActivity.class);
                 launcher.launch(intent);
             }
         });
+
     }
+
+
 }
+
