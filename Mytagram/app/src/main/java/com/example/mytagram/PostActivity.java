@@ -64,6 +64,10 @@ public class PostActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+
         ImageButton btnCancel = (ImageButton) findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +76,16 @@ public class PostActivity extends AppCompatActivity {
                 finish();}
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            Bitmap image = (Bitmap) bundle.get("data");
+            img.setImageBitmap(image);
+        }
     }
 
 }

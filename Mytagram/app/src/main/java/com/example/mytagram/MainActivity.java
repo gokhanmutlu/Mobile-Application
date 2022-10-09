@@ -23,6 +23,18 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            Post post = new Post();
+            post.setMessage(data.getCharSequenceExtra("msg").toString());
+            post.setImage((Bitmap) data.getParcelableExtra("bitmap"));
+            posts.add(post);
+            ((PostAdapter) listView.getAdapter()).notifyDataSetChanged();
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
