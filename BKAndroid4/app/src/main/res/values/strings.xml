@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BK Android-4</string>
+    <string name="bilmeceMetni"> Çarşıdan aldım bir tane eve geldim bin tane</string>
+    <string name="bilmeceCevabi">NAR</string>
+</resources>
