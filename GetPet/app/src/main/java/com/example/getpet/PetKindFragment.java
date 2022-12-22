@@ -1,11 +1,13 @@
 package com.example.getpet;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,8 +78,8 @@ public class PetKindFragment extends Fragment {
         btnDog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.fragmentContainerView, new ItemFragment()).commit();
+                Intent intent = new Intent(getActivity(), AnimalActivity.class);
+                startActivity(intent);
             }
         });
 

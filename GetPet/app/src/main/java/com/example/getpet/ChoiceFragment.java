@@ -68,19 +68,30 @@ public class ChoiceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_choice,container,false);
         ImageButton btnAdopt = view.findViewById(R.id.btnAdopt);
+        ImageButton btnFindHome = view.findViewById(R.id.btnFindHome);
 
         btnAdopt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.beginTransaction().replace(R.id.fragmentContainerView, new PetKindFragment()).commit();
+                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+                fm.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                fm.replace(R.id.fragmentContainerView, new PetKindFragment()).commit();
             }
         });
+
+        btnFindHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fm = getActivity().getSupportFragmentManager().beginTransaction();
+                fm.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                fm.replace(R.id.fragmentContainerView, new UploadFragment()).commit();
+            }
+        }); 
         return view;
 
     }
 
-    @Override
+   /* @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -88,5 +99,5 @@ public class ChoiceFragment extends Fragment {
 
 
 
-    }
+    }*/
 }
