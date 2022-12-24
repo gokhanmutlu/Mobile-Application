@@ -33,12 +33,12 @@ public class DetailActivity extends AppCompatActivity {
 
             Glide.with(this).load(bundle.getString("Image")).into(detailImage);
 
-            txtInfoName.setText(bundle.getString("Name"));
-            txtInfoAge.setText(bundle.getString("Age"));
-            txtInfoGender.setText(bundle.getString("Gender"));
-            txtSize.setText(bundle.getString("Size"));
-            txtLength.setText(bundle.getString("Length"));
-            txtEnergy.setText(bundle.getString("Energy"));
+            txtInfoName.setText("Name: " + bundle.getString("Name"));
+            txtInfoAge.setText("Age: " + bundle.getString("Age"));
+            txtInfoGender.setText("Gender: " + bundle.getString("Gender"));
+            txtSize.setText("Size: " + bundle.getString("Size"));
+            txtLength.setText("Coat Length: " + bundle.getString("Length"));
+            txtEnergy.setText("Energy: " + bundle.getString("Energy"));
 
         }
 

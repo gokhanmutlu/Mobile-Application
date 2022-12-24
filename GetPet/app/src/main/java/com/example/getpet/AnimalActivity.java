@@ -49,7 +49,10 @@ public class AnimalActivity extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter(AnimalActivity.this, animalList);
         recyclerView.setAdapter(adapter);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Pet");
+        //getting key from previous fragment to list which kind of pet it will list
+        String petKind = getIntent().getStringExtra("Key");
+
+        databaseReference = FirebaseDatabase.getInstance().getReference(petKind);
         dialog.show();
 
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {

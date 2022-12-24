@@ -30,6 +30,20 @@
                 android:id="@+id/uploadImage"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"/>
+
+
+            <Spinner
+                android:id="@+id/kindSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:gravity="start|center_vertical"
+                android:padding="16dp"
+                android:textColor="@color/appcolor"
+                />
+
+            />
+
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"

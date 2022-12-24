@@ -17,9 +17,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,11 +33,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class UploadFragment extends Fragment {
 
     ImageView uploadImage;
     Button saveButton;
     EditText uploadPetName, uploadAge, uploadGender, uploadSize, uploadLength, uploadEnergy;
+    Spinner kindSpinner;
 
     String imageURL;
     Uri uri;
@@ -101,6 +107,15 @@ public class UploadFragment extends Fragment {
         uploadImage = view.findViewById(R.id.uploadImage);
         saveButton = view.findViewById(R.id.saveButton);
 
+        // selection of pet kind
+        List<String> kinds = Arrays.asList("Dog", "Cat", "Other");
+
+        kindSpinner = view.findViewById(R.id.kindSpinner);
+        ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, kinds);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        kindSpinner.setAdapter(adapter);
+
+
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -137,11 +152,13 @@ public class UploadFragment extends Fragment {
     public void saveData(){
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android Images")
                 .child(uri.getLastPathSegment());
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
         AlertDialog dialog = builder.create();
         dialog.show();
+
         storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -168,9 +185,12 @@ public class UploadFragment extends Fragment {
         String petLength = uploadLength.getText().toString();
         String petEnergy = uploadEnergy.getText().toString();
 
+        // getting selected kind on spinner
+        String petKind = kindSpinner.getSelectedItem().toString();
+
         Animal animal = new Animal(petName, petAge, petGender, petSize, petLength, petEnergy, imageURL);
 
-        FirebaseDatabase.getInstance().getReference("Pet").child(petName).setValue(animal).
+        FirebaseDatabase.getInstance().getReference(petKind).child(petName).setValue(animal).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

@@ -75,10 +75,30 @@ public class PetKindFragment extends Fragment {
         Button btnCat = view.findViewById(R.id.btnCat);
         Button btnOther = view.findViewById(R.id.btnOther);
 
+        //Dog
         btnDog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), AnimalActivity.class);
+                intent.putExtra("Key", "Dog");
+                startActivity(intent);
+            }
+        });
+        //Cat
+        btnCat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AnimalActivity.class);
+                intent.putExtra("Key", "Cat");
+                startActivity(intent);
+            }
+        });
+        //Other
+        btnOther.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AnimalActivity.class);
+                intent.putExtra("Key", "Other");
                 startActivity(intent);
             }
         });
