@@ -28,7 +28,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:background="#DF916F"
-        android:src="@drawable/hearth_foreground"
+        android:src="@mipmap/paw_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
