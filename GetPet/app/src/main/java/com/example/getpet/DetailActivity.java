@@ -36,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        // id of views on activity_detail.xml
         btnDownload = findViewById(R.id.btnDownload);
 
         detailImage = findViewById(R.id.detailImage);
@@ -49,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
-
+            // Getting informations to list details about animal from MyAdapter when card clicked.
             Glide.with(this).load(bundle.getString("Image")).into(detailImage);
 
             txtInfoName.setText("Name: " + bundle.getString("Name"));
@@ -64,6 +65,7 @@ public class DetailActivity extends AppCompatActivity {
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Thread to download image of pet to the phone storage
                new Thread(new Runnable() {
                    @Override
                    public void run() {

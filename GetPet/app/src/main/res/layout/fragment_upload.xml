@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="@drawable/smallpawbackground"
     tools:context=".UploadFragment">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -39,6 +39,7 @@
                 android:layout_marginTop="20dp"
                 android:gravity="start|center_vertical"
                 android:padding="16dp"
+                android:background="@drawable/border"
                 android:textColor="@color/appcolor"
                 />
 

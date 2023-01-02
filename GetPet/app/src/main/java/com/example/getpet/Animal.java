@@ -1,5 +1,6 @@
 package com.example.getpet;
 
+//a class to upload and fetching the animals which are dog,cat and other animals.
 public class Animal {
     private String name, age, gender, size, length, energy, petImage;
 

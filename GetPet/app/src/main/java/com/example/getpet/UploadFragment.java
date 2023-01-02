@@ -96,7 +96,7 @@ public class UploadFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        // ids of views in fragment_upload.xml
         uploadPetName = view.findViewById(R.id.uploadPetName);
         uploadAge = view.findViewById(R.id.uploadAge);
         uploadGender = view.findViewById(R.id.uploadGender);
@@ -110,12 +110,13 @@ public class UploadFragment extends Fragment {
         // selection of pet kind
         List<String> kinds = Arrays.asList("Dog", "Cat", "Other");
 
+        // creating options menu to choose which animal will upload to the database
         kindSpinner = view.findViewById(R.id.kindSpinner);
         ArrayAdapter adapter = new ArrayAdapter(getContext(), android.R.layout.simple_spinner_item, kinds);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kindSpinner.setAdapter(adapter);
 
-
+        // creating a activity for result to Get image URI to upload to database
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -149,10 +150,11 @@ public class UploadFragment extends Fragment {
         });
     }
 
+    // saving image to the firebase storage
     public void saveData(){
         StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android Images")
                 .child(uri.getLastPathSegment());
-
+        // alert for processing
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
@@ -166,6 +168,7 @@ public class UploadFragment extends Fragment {
                 while (!uriTask.isComplete());
                 Uri urlImage = uriTask.getResult();
                 imageURL = urlImage.toString();
+                // also upload the animal realtime firebase
                 uploadData();
                 dialog.dismiss();
             }
@@ -178,6 +181,7 @@ public class UploadFragment extends Fragment {
     }
 
     public void uploadData(){
+        // set the animals attribute to create new animal object
         String petName = uploadPetName.getText().toString();
         String petAge = uploadAge.getText().toString();
         String petGender = uploadGender.getText().toString();
@@ -187,9 +191,9 @@ public class UploadFragment extends Fragment {
 
         // getting selected kind on spinner
         String petKind = kindSpinner.getSelectedItem().toString();
-
+        // create new animal object
         Animal animal = new Animal(petName, petAge, petGender, petSize, petLength, petEnergy, imageURL);
-
+        // pushing to the database
         FirebaseDatabase.getInstance().getReference(petKind).child(petName).setValue(animal).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override

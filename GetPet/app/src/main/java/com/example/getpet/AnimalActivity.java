@@ -20,6 +20,7 @@ import java.util.List;
 
 public class AnimalActivity extends AppCompatActivity {
 
+    // Recyclerview to list animals on the realtime database
     RecyclerView recyclerView;
     List<Animal> animalList;
     DatabaseReference databaseReference;
@@ -37,6 +38,7 @@ public class AnimalActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(AnimalActivity.this, 1);
         recyclerView.setLayoutManager(gridLayoutManager);
 
+        // alert during animals fetching from database
         AlertDialog.Builder builder = new AlertDialog.Builder(AnimalActivity.this);
         builder.setCancelable(false);
         builder.setView(R.layout.progress_layout);
@@ -44,8 +46,10 @@ public class AnimalActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
+        // animal list to add animals that on the database
         animalList = new ArrayList<>();
 
+        // adapter for animals
         MyAdapter adapter = new MyAdapter(AnimalActivity.this, animalList);
         recyclerView.setAdapter(adapter);
 
@@ -59,6 +63,7 @@ public class AnimalActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 animalList.clear();
+                // its adding animals to the animal list.
                 for (DataSnapshot itemSnapShot: snapshot.getChildren()){
                     Animal animal = itemSnapShot.getValue(Animal.class);
                     animalList.add(animal);

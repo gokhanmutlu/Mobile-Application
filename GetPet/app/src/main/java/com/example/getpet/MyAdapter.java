@@ -38,11 +38,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        // attributes which will list on the list of animal
         Glide.with(context).load(animalList.get(position).getPetImage()).into(holder.recyclerImage);
         holder.recyclerName.setText(animalList.get(position).getName());
         holder.recyclerAge.setText(animalList.get(position).getAge());
         holder.recyclerGender.setText(animalList.get(position).getGender());
 
+        // when clicked to the card, it sends informations to the detail activity.
         holder.recyclerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +81,7 @@ class MyViewHolder extends RecyclerView.ViewHolder{
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
-
+        // ids of viewHolder which will list.
         recyclerImage = itemView.findViewById(R.id.recyclerImage);
         recyclerName = itemView.findViewById(R.id.recyclerName);
         recyclerAge = itemView.findViewById(R.id.recyclerAge);

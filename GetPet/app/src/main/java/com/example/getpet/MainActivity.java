@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         btnFavorite = findViewById(R.id.btnFavorite);
         btnProfile = findViewById(R.id.btnProfile);
 
+        // Bottom buttons change the fragment.
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

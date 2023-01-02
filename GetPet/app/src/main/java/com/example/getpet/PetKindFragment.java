@@ -75,6 +75,8 @@ public class PetKindFragment extends Fragment {
         Button btnCat = view.findViewById(R.id.btnCat);
         Button btnOther = view.findViewById(R.id.btnOther);
 
+        // when clicked the buttons, it send a key to animalActivity that will list what kind pet.
+
         //Dog
         btnDog.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -70,6 +70,7 @@ public class ChoiceFragment extends Fragment {
         ImageButton btnAdopt = view.findViewById(R.id.btnAdopt);
         ImageButton btnFindHome = view.findViewById(R.id.btnFindHome);
 
+        // user can access adopt fragment or find a home fragment which uploads new animals to the database
         btnAdopt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -21,9 +21,11 @@ public class EntryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // hiding action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
+        // it make fullscreen the activity
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_entry);
 
@@ -33,6 +35,7 @@ public class EntryActivity extends AppCompatActivity {
         logo.setVisibility(View.GONE);
         appName.setVisibility(View.GONE);
 
+        // Welcoming animation when clicked the app
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
